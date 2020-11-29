@@ -6,6 +6,8 @@
 
 	<title>webshark ${WEBSHARK_VER}</title>
 
+	<link rel="icon" href="https://user-images.githubusercontent.com/1423657/100539020-8f126380-3233-11eb-9348-2ecb496cb58c.png" type="image/png" />
+
 	<link rel="stylesheet" href="css/webshark.css" type="text/css">
 	<link rel="stylesheet" href="css/awesomplete.css" type="text/css">
 
@@ -542,9 +544,10 @@ TODO: Give user possible to generate multiple reports by selecting checkboxes
 
 <body onload="load()"><div id="ws_div" style="display: none;">
 	<div id="user_toolbar">
-		<a href="/webshark">Webshark</a>
+		<a href="/webshark"><img src="https://user-images.githubusercontent.com/1423657/100539020-8f126380-3233-11eb-9348-2ecb496cb58c.png" width="20" style="vertical-align: middle;margin-right: 5px;">&nbsp; webshark</a>
 
-		<div style="float: right; margin-right: 5px;">
+		<div style="float: right; margin-right: 5px;vertical-align: middle;">
+			<span id="toolbar_capture_description" style="margin-right: 10px;"></span>
 			<span id="user_anon" style="display: none;">
 				Guest
 				<a href="/login">Login</a>
@@ -587,10 +590,10 @@ TODO: Give user possible to generate multiple reports by selecting checkboxes
 		<div style="float: left;">
 			<a id="toolbar_capture_files"></a>
 			<a id="toolbar_capture_settings"></a>
-			<span id="toolbar_capture_description"></span>
 			<a id="toolbar_capture_down"></a>
-			<p />
 			<input id="display_filter" placeholder="Apply a display filter" type='text' onchange='set_filter(this.value);' style='width: 550px;' />
+
+			<p />
 
 			<ul class="menul">
 			<li>
@@ -613,12 +616,15 @@ TODO: Give user possible to generate multiple reports by selecting checkboxes
 			</li>
 		</ul>
 		</div>
+		<!--
 		<div style="float: right; border: 1px solid grey;">
 			<div id="capture_interval" style="margin-top: 2px;">
 				<svg width="620" height="100"></svg>
 			</div>
 			<div style="float: left;">
-				<span style="font-size: 12px;" id="capture_interval_descr"><!---Displaying XXX frames out of YYY.--></span>
+				<span style="font-size: 12px;" id="capture_interval_descr">
+					<!---Displaying XXX frames out of YYY.-->
+				</span>
 			</div>
 			<div style="float: right;">
 				<button id="capture_interval_bps" class="wsbutton selected" onclick="render_interval('bps')">Bytes</button>
@@ -626,6 +632,7 @@ TODO: Give user possible to generate multiple reports by selecting checkboxes
 				<button id="capture_interval_adv" class="wsbutton" style="margin-left: 15px;" onclick="show_hide_graph('report_graph', 'capture_interval_adv')">Advanced Graph</button>
 			</div>
 		</div>
+		-->
 		<div style="clear: both;"></div>
 
 		<div id="report_graph" style="border: 2px solid grey; display: none;">
@@ -686,11 +693,11 @@ TODO: Give user possible to generate multiple reports by selecting checkboxes
 		<input id="field_filter" placeholder="Apply a field filter" type='text' onchange='set_field_filter(this.value);' style='width: 350px;' />
 	</div>
 
-	<div id="ws_packet_detail_view" style='overflow: auto; width: 100%; height: 250px; border: 2px solid grey; float: left;'>
-Select frame
+	<div id="ws_packet_detail_view" style='overflow: auto; width: 100%; height: 350px; border: 2px solid grey; float: left;'>
+	Select frame
 	</div>
 
-	<div id="ws_packet_bytes_view" style='overflow: auto; width: 100%; height: 200px; border: 2px solid grey; float: right;'>
+	<div id="ws_packet_bytes_view" style='overflow: auto; width: 100%; height: 350px; border: 2px solid grey; float: right;'>
 		<div id="ws_packet_pane" style="float: left;"></div>
 		<div style="float: right;">
 			<button id="packet_display_base_16" class="wsbutton selected" onclick="bytes_display_base(16)">Hex</button>

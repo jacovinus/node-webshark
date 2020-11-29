@@ -6,27 +6,19 @@
 
 This projects implements the original webShark API in NodeJS, improving its capabilities and input methods to support PCAP storage backends APIs such as Stenographer and others.
 
-![image](https://user-images.githubusercontent.com/1423657/58755588-094f1400-84e7-11e9-9a3e-b2dfb27b6d74.png)
-
-## Status
-Work in progress. Nothing to see.
+![image](https://user-images.githubusercontent.com/1423657/100542883-351e9780-324d-11eb-8f10-28eb758245ea.png)
 
 
 ## Instructions
-#### Clone
+Mount your PCAP content directory to location `/captures` and launch webshark
+
+#### Run with Compose
 ```
-git clone https://github.com/QXIP/node-webshark
-cd node-webshark
+docker-compose up -d
 ```
-#### Build
-Build a container with `sharkd` and `node-webshark` bundled
+#### Run Manually
 ```
-docker build -t webshark:latest .
-```
-#### Run
-Mount your PCAP content directory to location `/captures` and launch
-```
-docker run -ti --rm -p 8085:8085 -v $(pwd)/captures:/captures webshark:latest
+docker run -ti --rm -p 8085:8085 -v $(pwd)/captures:/captures qxip/webshark
 ```
 #### Test
 Browse to your webshark instance, ie: `http://localhost:8085/webshark`

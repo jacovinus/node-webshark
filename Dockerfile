@@ -1,7 +1,9 @@
 FROM node:8-stretch as intermediate
 
+ENV serial 202098761
+
 RUN apt-get update && apt-get install -y \
-	git make python3 cmake flex bison libglib2.0-dev libgcrypt20-dev libspeex-dev \
+	git make python3 cmake flex bison libglib2.0-dev libgcrypt20-dev libspeex-dev libc-ares-dev \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /out
@@ -11,18 +13,16 @@ RUN mkdir -p /var/run
 WORKDIR /usr/src
 
 RUN git clone https://github.com/qxip/node-webshark /usr/src/node-webshark
-RUN git clone https://code.wireshark.org/review/wireshark /usr/src/wireshark
+RUN git clone https://github.com/wireshark/wireshark /usr/src/wireshark
 
 WORKDIR /usr/src/wireshark
 RUN ../node-webshark/sharkd/build.sh
 
 
-FROM node:8-stretch
-
-ENV serial 08120874
+FROM node:10-stretch
 
 RUN apt update \
-    && apt install -y git libglib2.0-0 speex libspeex-dev \
+    && apt install -y git libglib2.0-0 speex libspeex-dev libc-ares2 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /captures
